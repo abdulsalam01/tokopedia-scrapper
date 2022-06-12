@@ -8,6 +8,8 @@ package com.project.tokopedia.scrapper;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import config.WebClientConfig;
+import java.util.List;
+import utils.GenerateFile;
 
 /**
  *
@@ -16,9 +18,12 @@ import config.WebClientConfig;
 public class MainScrapper {
 
     public static void main(String[] args) {
-        WebClient webClient = WebClientConfig.init(BrowserVersion.CHROME, args);
-        String res = WebClientConfig.Scrap(webClient);
+        Object[] proxy = new Object[]{"ProxyServer", 8080};
+        WebClient webClient = WebClientConfig.init(BrowserVersion.CHROME, proxy);
+        List<String[]>res = WebClientConfig.Scrap(webClient);
 
-        System.out.println(res);
+        // save to file
+        String path = System.getProperty("user.dir") + "src/main/java/export";
+        GenerateFile.writeToCsv(path + "/tokped_data_scrap.csv", res);
     }
 }

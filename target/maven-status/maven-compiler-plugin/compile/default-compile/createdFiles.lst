@@ -1,3 +1,4 @@
 config\Constant.class
-config\WebClientConfig.class
 com\project\tokopedia\scrapper\MainScrapper.class
+config\WebClientConfig.class
+utils\GenerateFile.class
